@@ -22,7 +22,7 @@ app.use(cookieParser());
 app.use(express.static('dist')); // 빌드된 Vue.js 앱의 정적 파일 제공
 
 app.get('*', function(req, res) {
-  res.sendFile(__dirname + '/dist/index.html'); // Vue.js 앱 진입점
+  res.sendFile(__dirname + '/dist/index.html'); // 모든 URL 에서 index.html 정적파일로 응답
 });
 
 const port = process.env.PORT || 3000;
