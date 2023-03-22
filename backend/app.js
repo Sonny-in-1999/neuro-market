@@ -25,12 +25,6 @@ app.get('*', function(req, res) {
   res.sendFile(__dirname + '/dist/index.html'); // Vue.js 앱 진입점
 });
 
-app.all('/*', function(req, res, next){
-  res.header("Access-Control-Allow-Origin", "*");
-  res.header("Access-Control-Allow-Headers", "X-Requested-With");
-  next();
-});
-
 const port = process.env.PORT || 3000;
 app.listen(port, () => {
   console.log(`App listening on port ${port}`);
@@ -41,7 +35,11 @@ app.use('/user', userRouter);
 app.use('/board', boardRouter);
 app.use('/product', productRouter);
 
-
+app.all('/*', function(req, res, next){
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Headers", "X-Requested-With");
+  next();
+});
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
