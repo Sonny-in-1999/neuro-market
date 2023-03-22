@@ -1,13 +1,15 @@
-var createError = require('http-errors');
-var express = require('express');
-var path = require('path');
-var cookieParser = require('cookie-parser');
-var logger = require('morgan');
+const createError = require('http-errors');
+const express = require('express');
+const path = require('path');
+const cookieParser = require('cookie-parser');
+const logger = require('morgan');
 
-var indexRouter = require('./routes/index');
-var usersRouter = require('./routes/users');
+const indexRouter = require('./routes/index');
+const userRouter = require('./routes/user');
+const boardRouter = require('./routes/board')
+const productRouter = require('./routes/product');
 
-var app = express();
+const app = express();
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -17,10 +19,27 @@ app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
-app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static('dist')); // 빌드된 Vue.js 앱의 정적 파일 제공
+
+app.get('*', function(req, res) {
+  res.sendFile(__dirname + '/dist/index.html'); // Vue.js 앱 진입점
+});
+
+const port = process.env.PORT || 3000;
+app.listen(port, () => {
+  console.log(`App listening on port ${port}`);
+});
 
 app.use('/', indexRouter);
-app.use('/users', usersRouter);
+app.use('/user', userRouter);
+app.use('/board', boardRouter);
+app.use('/product', productRouter);
+
+app.all('/*', function(req, res, next){
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Headers", "X-Requested-With");
+  next();
+});
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
