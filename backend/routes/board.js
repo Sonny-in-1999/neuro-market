@@ -14,5 +14,8 @@ router.get('/notice', (req, res) => {
 
 });
 
+router.get('/post', (req, res) => {
+
+});
 
 module.exports = router;
