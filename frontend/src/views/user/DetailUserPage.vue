@@ -1,15 +1,14 @@
 <template>
-  <NavComp/>
-  <div>이벤트 게시판</div>
+    <NavComp/>
+    <div>User Detail</div>
 </template>
 
 <script>
-
 import NavComp from "@/components/NavComp.vue";
 
 export default {
-  name: "EventBoardPage",
-  components: {NavComp}
+    name: "UserDetailPage",
+    components: {NavComp}
 }
 </script>
 

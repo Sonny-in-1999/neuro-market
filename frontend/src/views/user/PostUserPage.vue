@@ -1,15 +1,14 @@
 <template>
-  <NavComp/>
-  <div>기타용품</div>
-  <a href="/product/post">글 작성하기</a>
+    <NavComp/>
+    <div>User Post</div>
 </template>
 
 <script>
 import NavComp from "@/components/NavComp.vue";
 
 export default {
-  name: "EtcProductPage",
-  components: {NavComp}
+    name: "UserPostPage",
+    components: {NavComp}
 }
 </script>
 
