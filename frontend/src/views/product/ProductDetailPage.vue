@@ -1,16 +1,13 @@
 <template>
     <NavComp/>
-    <div>User Detail</div>
-    <form method="get" action="/user//:id/detail">
-
-    </form>
+    <div>Product Detail</div>
 </template>
 
 <script>
 import NavComp from "@/components/NavComp.vue";
 
 export default {
-    name: "UserDetailPage",
+    name: "ProductDetailPage",
     components: {NavComp}
 }
 </script>

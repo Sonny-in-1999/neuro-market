@@ -11,7 +11,7 @@
 import NavComp from "@/components/NavComp.vue";
 
 export default {
-  name: "EventBoardPage",
+  name: "CommunityBoardPage",
   components: {NavComp}
 }
 </script>

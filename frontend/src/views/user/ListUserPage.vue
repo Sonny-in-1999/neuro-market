@@ -1,16 +1,16 @@
 <template>
     <NavComp/>
-    <div>User Detail</div>
-    <form method="get" action="/user//:id/detail">
-
-    </form>
+    <div>Admin_Only User List</div>
 </template>
 
 <script>
+
+
+
 import NavComp from "@/components/NavComp.vue";
 
 export default {
-    name: "UserDetailPage",
+    name: "ListUserPage",
     components: {NavComp}
 }
 </script>

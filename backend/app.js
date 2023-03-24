@@ -22,16 +22,15 @@ app.use(cookieParser());
 app.use(express.static('public')); // 빌드된 Vue.js 앱의 정적 파일 제공
 
 app.get('*', function (req, res) {
-    res.sendFile(__dirname + '/public/index.html'); // 모든 URL 에서 index.html 정적파일로 응답
+    res.sendFile(__dirname + '/public/index.html'); // 모든 URL 에서 index.html 정적 파일로 응답
 });
 
 const port = process.env.PORT || 3000;
-let db;
 const MongoClient = require('mongodb').MongoClient;
 MongoClient.connect(process.env.DB_URL)
     .then(r => {
         app.listen(port, () => console.log(`App listening on port ${port}`))
-        db = r.db('neurotoxin');
+        global.db = r.db('neurotoxin'); // global DB 설정을 통해, require 없이 router 에서 db를 불러올 수 있습니다.
         console.log("DB connected");
     }).catch(err => console.log(err));
 
