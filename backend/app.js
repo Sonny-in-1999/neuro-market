@@ -26,9 +26,15 @@ app.get('*', function(req, res) {
 });
 
 const port = process.env.PORT || 3000;
-app.listen(port, () => {
-  console.log(`App listening on port ${port}`);
-});
+let db;
+const MongoClient = require('mongodb').MongoClient;
+MongoClient.connect('mongodb+srv://dev:123450@neurotoxin.nlho9qd.mongodb.net/test')
+    .then(r => {
+      app.listen(port, () => console.log(`App listening on port ${port}`))
+      db = r.db('neurotoxin');
+      console.log("DB connected");
+    }).catch(err => console.log(err));
+
 
 app.use('/', indexRouter);
 app.use('/user', userRouter);

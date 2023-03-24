@@ -7,12 +7,21 @@ import KeyboardProductPage from "@/views/product/KeyboardProductPage.vue";
 import KeycapProductPage from "@/views/product/KeycapProductPage.vue";
 import ArtisanProductPage from "@/views/product/ArtisanProductPage.vue";
 import EtcProductPage from "@/views/product/EtcProductPage.vue";
+import PostBoardPage from "@/views/board/PostBoardPage.vue";
+import PostProductPage from "@/views/product/PostProductPage.vue";
+import PostUserPage from "@/views/user/PostUserPage.vue";
+import DetailUserPage from "@/views/user/DetailUserPage.vue";
 
 const routes = [
     {
         path: "/",
         name: MainPage,
         component: MainPage,
+    },
+    {
+        path: "/board/post",
+        name: PostBoardPage,
+        component: PostBoardPage,
     },
     {
         path: "/board/notice",
@@ -23,6 +32,11 @@ const routes = [
         path: "/board/event",
         name: EventBoardPage,
         component: EventBoardPage,
+    },
+    {
+        path: "/board/community",
+        name: PostProductPage,
+        component: PostProductPage,
     },
     {
         path: "/board/community",
@@ -47,6 +61,15 @@ const routes = [
         path: "/product/etc",
         component: EtcProductPage,
     },
+    {
+        path: "/user/post",
+        component: PostUserPage,
+    },
+    {
+        path: "/user/detail",
+        component: DetailUserPage,
+    },
+
 
 ];
 
