@@ -1,64 +1,59 @@
 import {createWebHistory, createRouter} from "vue-router";
 import MainPage from "@/views/MainPage.vue";
 import NoticeBoardPage from "@/views/board/NoticeBoardPage.vue";
-import EventBoardPage from "@/views/board/EventBoardPage.vue";
 import CommunityBoardPage from "@/views/board/CommunityBoardPage.vue";
 import KeyboardProductPage from "@/views/product/KeyboardProductPage.vue";
 import KeycapProductPage from "@/views/product/KeycapProductPage.vue";
 import ArtisanProductPage from "@/views/product/ArtisanProductPage.vue";
 import EtcProductPage from "@/views/product/EtcProductPage.vue";
-import PostBoardPage from "@/views/board/PostBoardPage.vue";
-import PostProductPage from "@/views/product/PostProductPage.vue";
+import PostCommunityBoardPage from "@/views/board/PostCommunityBoardPage.vue";
 import PostUserPage from "@/views/user/PostUserPage.vue";
 import DetailUserPage from "@/views/user/DetailUserPage.vue";
+import PostProductPage from "@/views/product/PostProductPage.vue";
+
 
 const routes = [
     {
-        path: "/",
+        path: "/", //메인 페이지
         name: MainPage,
         component: MainPage,
     },
     {
-        path: "/board/post",
-        name: PostBoardPage,
-        component: PostBoardPage,
+        path: "/board/community/post", //커뮤니티 게시글 등록 페이지
+        name: PostCommunityBoardPage,
+        component: PostCommunityBoardPage,
     },
     {
-        path: "/board/notice",
+        path: "/board/notice", //공지사항 페이지
         name: NoticeBoardPage,
         component: NoticeBoardPage,
     },
     {
-        path: "/board/event",
-        name: EventBoardPage,
-        component: EventBoardPage,
-    },
-    {
-        path: "/board/community",
-        name: PostProductPage,
-        component: PostProductPage,
-    },
-    {
-        path: "/board/community",
+        path: "/board/community", //커뮤니티 페이지
         name: CommunityBoardPage,
         component: CommunityBoardPage,
     },
     {
-        path: "/product/keyboard",
+        path: "/product/keyboard", //키보드 상품 목록 페이지
         name: KeyboardProductPage,
         component: KeyboardProductPage,
     },
     {
-        path: "/product/keycap",
+        path: "/product/post", //상품 등록 페이지
+        name: PostProductPage,
+        component: PostProductPage
+    },
+    {
+        path: "/product/keycap", //키캡 상품 목록 페이지
         name: KeycapProductPage,
         component: KeycapProductPage,
     },
     {
-        path: "/product/artisan",
+        path: "/product/artisan", //아티산 상품 목록 페이지
         component: ArtisanProductPage,
     },
     {
-        path: "/product/etc",
+        path: "/product/etc", //기타용품 상품 목록 페이지
         component: EtcProductPage,
     },
     {

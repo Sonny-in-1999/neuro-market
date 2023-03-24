@@ -14,7 +14,7 @@ module.exports = defineConfig({
             }
         }
     },
-    outputDir: '../backend/dist'
+    outputDir: '../backend/public'
 })
 
 

@@ -6,5 +6,7 @@ import 'bootstrap/dist/css/bootstrap-grid.min.css'
 import router from "@/router";
 
 
+
+
 createApp(App).use(router).mount('#app')
 global.$ = jQuery
