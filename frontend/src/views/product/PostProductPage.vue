@@ -75,6 +75,7 @@ export default {
             const newProduct = {
                 tSort: this.tradeSort,
                 pSort: this.productSort,
+                uId: userId,
                 pName: this.productName,
                 pPrice: this.productPrice,
                 pDetail: this.productDetail,

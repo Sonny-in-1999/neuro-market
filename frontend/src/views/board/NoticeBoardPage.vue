@@ -7,7 +7,7 @@
         <div v-for="(board, index) in boards" :key="index">
             <router-link :to="'/product/' + board._id"></router-link>
             <p>제목: {{ board.boardTitle }}</p>
-            <p>작성자: {{ getUserById(board.userId).userName }}</p>
+            <p>작성자: {{ board.userName }}</p>
             <p>작성일자: {{ board.productCreatedAt }}</p>
         </div>
     </div>
@@ -24,7 +24,7 @@ export default {
 
     data() {
         return {
-            boards: []
+            boards: [],
         };
     },
 
@@ -35,12 +35,6 @@ export default {
             })
             .catch(error => console.log(error));
     },
-
-    methods: {
-        getUserById(id) {
-            return this.users.find(user => user.id === id)  // comment collection 내의 userId Fk(user collection Pk)를 통해, userName 을 불러옵니다.
-        }
-    }
 }
 </script>
 

@@ -3,7 +3,7 @@ const express = require('express');
 const path = require('path');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
-const indexRouter = require('./routes/index');
+const rootRouter = require('./routes/root');
 const userRouter = require('./routes/user');
 const boardRouter = require('./routes/board')
 const productRouter = require('./routes/product');
@@ -35,7 +35,7 @@ MongoClient.connect(process.env.DB_URL)
     }).catch(err => console.log(err));
 
 
-app.use('/', indexRouter);
+app.use('/', rootRouter);
 app.use('/user', userRouter);
 app.use('/board', boardRouter);
 app.use('/product', productRouter);
@@ -62,6 +62,7 @@ app.use(function (err, req, res, next) {
     res.status(err.status || 500);
     res.render('error');
 });
+
 
 module.exports = app
 

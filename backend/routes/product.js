@@ -1,8 +1,9 @@
 const express = require('express');
+const {jwtVerify} = require("../token/jwtVerify");
 const router = express.Router();
 
 /* GET product listing. */
-router.get('/keyboard', (req, res) => {
+router.get('/keyboard', async (req, res) => {
     const keyboards = db.get('product').filter({'productSort': "keyboard"}).value();    // product collection 안의 productSort field 값을 이용하여 데이터를 선별추출합니다.
     res.json(keyboards);    // 선별추출한 데이터를 json 파일 형태로 전송합니다. 이미 get 메소드가 데이터를 선별을 했으므로, client 쪽에서 데이터를 구분할 필요 없이 출력하면 됩니다.
 });
@@ -27,18 +28,17 @@ router.get('/post', (req, res) => {
 });
 
 /* POST product listing. */
-router.post('/post/upload', (req, res, next) => {
+router.post('/post/upload', jwtVerify, (req, res, next) => {
 
+    const user = req.user; // jwtVerify 를 통해 받은 user 를 const user 에 저장합니다.
     let now = new Date();
 
     db.collection('total').findOne({'name':'totalProduct'})    // 총 등록된 수 기록을 위한 collection 인 total 에서, 총 product 수가 저장된 데이터를 조회합니다
         .then(async response => {
 
-            const user = await db.collection('user').findOne({_id: req.body.userId});   // req.body.userId를, Login 메소드를 이용해서 로그인 된 회원 정보를 받아야합니다.
-
             await db.collection('product').insertOne({ // product collection 에| productId 에는 총 product 수 +1만큼을 넣고, productDetail 을 넣습니다.
                 _id: response.totalProduct + 1,
-                userId: req.body.userId,
+                userId: user.userId,
                 userName: user.userName,
                 tradeSort: req.body.tSort,
                 tradeStatus: true,
