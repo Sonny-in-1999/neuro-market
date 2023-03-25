@@ -8,6 +8,7 @@ const indexRouter = require('./routes/index');
 const userRouter = require('./routes/user');
 const boardRouter = require('./routes/board')
 const productRouter = require('./routes/product');
+const commentRouter = require('./routes/comment');
 
 const app = express();
 require("dotenv").config();
@@ -39,6 +40,7 @@ app.use('/', indexRouter);
 app.use('/user', userRouter);
 app.use('/board', boardRouter);
 app.use('/product', productRouter);
+app.use('/comment', commentRouter);
 
 app.all('/*', function (req, res, next) {
     res.header("Access-Control-Allow-Origin", "*");

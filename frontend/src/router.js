@@ -10,6 +10,7 @@ import PostCommunityBoardPage from "@/views/board/PostCommunityBoardPage.vue";
 import PostUserPage from "@/views/user/PostUserPage.vue";
 import DetailUserPage from "@/views/user/DetailUserPage.vue";
 import PostProductPage from "@/views/product/PostProductPage.vue";
+import PostCommentBoardPage from "@/views/comment/PostCommentBoardPage.vue";
 
 
 const routes = [
@@ -64,7 +65,10 @@ const routes = [
         path: "/user/detail",
         component: DetailUserPage,
     },
-
+    {
+        path: "/comment/post",
+        component: PostCommentBoardPage,
+    },
 
 ];
 
