@@ -10,7 +10,19 @@
             <p>작성일자: {{ product.productCreatedAt }}</p>
         </div>
     </div>
+  <br/>
+  <br/>
+  <div class="productContainer">
+    <div>
+      <img class='productimg' alt="image" src="https://photo.coolenjoy.co.kr/data/editor/1712/Bimg_20171223140430_prxsfivr.jpg">
+      <p>Product Name</p>
+      <p>Product Price</p>
+    </div>
+
+  </div>
+
     <a href="/product/post">글 작성하기</a>
+
 </template>
 
 <script>
@@ -44,5 +56,14 @@ export default {
 </script>
 
 <style scoped>
+.productContainer{
+  display: flex;
+  margin: 1rem;
 
+}
+.productimg {
+  width: 500px;
+  height: 450px;
+  border-radius: 30px;
+}
 </style>

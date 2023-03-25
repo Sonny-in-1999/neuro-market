@@ -4,7 +4,7 @@
   <div>상품 등록</div>
   <br/>
   <br/>
-  <form @submit.prevent="createProduct">
+  <form @submit.prevent="createProduct" class="createProduct">
     <div class="mb-3">
       <label for="selectTradeSort" class="form-label">매매 형식을 선택해주세요</label>
       <select id="selectTradeSort" class="form-select" aria-label="Default select example" name="sort" v-model="tradeSort" required>
@@ -88,5 +88,20 @@ export default {
 </script>
 
 <style scoped>
+.createProduct{
+  display : flex;
+  justify-content: center;
+  align-items: center;
+  vertical-align: center;
+  flex-direction: column;
+  margin-bottom: 3rem;
+}
+.form-select{
+  width: 800px;
+}
 
+.form-control{
+  width: 800px;
+
+}
 </style>

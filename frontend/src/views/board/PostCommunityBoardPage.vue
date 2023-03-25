@@ -4,7 +4,7 @@
   <div>게시글 작성</div>
   <br/>
   <br/>
-  <form @submit.prevent="createBoard">
+  <form @submit.prevent="createBoard" class="createBoard">
       <div class="mb-3">
           <label for="selectPostSort" class="form-label">게시판을 선택해주세요</label>
           <select id="selectPostSort" class="form-select" aria-label="Default select example" name="sort" v-model="boardSort" required>
@@ -60,5 +60,19 @@ export default {
 </script>
 
 <style scoped>
+.createBoard{
+  display : flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  vertical-align: center;
+}
+.form-select{
+  width: 800px;
+}
 
+.form-control{
+  width: 800px;
+
+}
 </style>

@@ -14,7 +14,7 @@
 
 <script>
 import NavComp from "@/components/NavComp.vue";
-import axios from "axios";
+// import axios from "axios";
 
 
 export default {
