@@ -4,7 +4,7 @@
         <router-link :to="'/board/' + board._id"></router-link>
         <h1>{{ board.boardTitle }}</h1>
         <p>{{ board.boardDetail }}</p>
-        <p>{{ getUserById(board.userId).userName }}</p>
+        <p>{{ board.userId }}</p>
     </div>
 <!--    CommentBoardPage.vue    -->
 </template>
@@ -14,7 +14,7 @@ import NavComp from "@/components/NavComp.vue";
 import axios from "axios";
 
 export default {
-    name: "BoardDetailPage",
+    name: "DetailBoardPage",
     components: {NavComp},
 
     data() {
@@ -32,12 +32,6 @@ export default {
             })
             .catch(error => console.log(error));
     },
-
-    methods: {
-        getUserById(id) {
-            return this.users.find(user => user.id === id)  // comment collection 내의 userId Fk(user collection Pk)를 통해, userName 을 불러옵니다.
-        }
-    }
 }
 </script>
 

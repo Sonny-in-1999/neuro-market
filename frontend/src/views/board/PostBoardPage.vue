@@ -23,6 +23,12 @@
           <label for="textPostDetail" class="form-label">내용</label>
           <textarea class="form-control" id="textPostDetail" rows="10" name="detail" v-model="boardDetail"></textarea>
       </div>
+      <br/>
+      <br/>
+      <br/>
+      <div>
+          <button type="submit" class="btn btn-primary">등록</button>
+      </div>
   </form>
 </template>
 

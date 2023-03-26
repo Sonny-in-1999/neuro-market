@@ -44,7 +44,7 @@ import NavComp from "@/components/NavComp.vue";
 import axios from 'axios';
 
 export default {
-    name: "UserPostPage",
+    name: "PostUserPage",
     components: {NavComp},
 
     data() {
@@ -63,18 +63,18 @@ export default {
         createUser() {
 
             const newUser = {
-                login: this.userLogin,
-                name: this.userName,
-                pw: this.userPw,
-                phone: this.userPhone,
-                email: this.userEmail,
-                grade: this.userGrade
+                uLogin: this.userLogin,
+                uName: this.userName,
+                uPw: this.userPw,
+                uPhone: this.userPhone,
+                uEmail: this.userEmail,
+                uGrade: this.userGrade
             };
             axios.post('/user/post/upload', newUser)
                 .then(response => this.users = response.data)
                 .catch((err) => console.log(err));
         }
-    }
+    },
 }
 
 </script>

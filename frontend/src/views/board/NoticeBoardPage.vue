@@ -4,11 +4,12 @@
   <p>공지사항 글은 어드민 페이지에서 작성 가능합니다.</p>
     <div>
         <h1>공지사항</h1>
-        <div v-for="(board, index) in boards" :key="index">
-            <router-link :to="'/product/' + board._id"></router-link>
+        <div v-for="board in boards" :key="board._id">
+            <router-link :to="'/product/' + board._id">
             <p>제목: {{ board.boardTitle }}</p>
-            <p>작성자: {{ getUserById(board.userId).userName }}</p>
+            <p>작성자: {{ board.userName }}</p>
             <p>작성일자: {{ board.productCreatedAt }}</p>
+            </router-link>
         </div>
     </div>
 </template>
@@ -24,7 +25,7 @@ export default {
 
     data() {
         return {
-            boards: []
+            boards: [],
         };
     },
 
@@ -35,12 +36,6 @@ export default {
             })
             .catch(error => console.log(error));
     },
-
-    methods: {
-        getUserById(id) {
-            return this.users.find(user => user.id === id)  // comment collection 내의 userId Fk(user collection Pk)를 통해, userName 을 불러옵니다.
-        }
-    }
 }
 </script>
 
