@@ -5,9 +5,9 @@ const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 const rootRouter = require('./routes/root');
 const userRouter = require('./routes/user');
-const boardRouter = require('./routes/board')
+const boardRouter = require('./routes/board');
 const productRouter = require('./routes/product');
-const commentRouter = require('./routes/comment');
+// const commentRouter = require('./routes/comment');
 
 const app = express();
 require("dotenv").config();
@@ -21,7 +21,7 @@ app.use(express.urlencoded({extended: false}));
 app.use(cookieParser());
 app.use(express.static('public')); // 빌드된 Vue.js 앱의 정적 파일 제공
 
-app.get('*', function (req, res) {
+app.get('*', function (req , res) {
     res.sendFile(__dirname + '/public/index.html'); // 모든 URL 에서 index.html 정적 파일로 응답
 });
 
@@ -39,7 +39,7 @@ app.use('/', rootRouter);
 app.use('/user', userRouter);
 app.use('/board', boardRouter);
 app.use('/product', productRouter);
-app.use('/comment', commentRouter);
+// app.use('/comment', commentRouter);
 
 app.all('/*', function (req, res, next) {
     res.header("Access-Control-Allow-Origin", "*");

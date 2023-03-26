@@ -52,10 +52,10 @@
 <script>
 import NavComp from "@/components/NavComp.vue";
 import axios from 'axios';
-
+axios.defaults.withCredentials = true;
 
 export default {
-  name: "ProductPostPage",
+  name: "PostProductPage",
   components: {NavComp},
 
     data() {
@@ -75,7 +75,6 @@ export default {
             const newProduct = {
                 tSort: this.tradeSort,
                 pSort: this.productSort,
-                uId: userId,
                 pName: this.productName,
                 pPrice: this.productPrice,
                 pDetail: this.productDetail,

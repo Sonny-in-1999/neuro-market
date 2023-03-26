@@ -2,12 +2,13 @@
     <NavComp/>
     <div>
         <h1>기타용품</h1>
-        <div v-for="(product, index) in products" :key="index">
-            <router-link :to="'/product/' + product._id"></router-link>
+        <div v-for="product in products" :key="product._id">
+            <router-link :to="'/product/' + product._id">
             <p>상품명: {{ product.productName }}</p>
             <p>가격: {{ product.productPrice }}</p>
             <p>작성자: {{ product.userName }}</p>
             <p>작성일자: {{ product.productCreatedAt }}</p>
+            </router-link>
         </div>
     </div>
     <a href="/product/post">글 작성하기</a>

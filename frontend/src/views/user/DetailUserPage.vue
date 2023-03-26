@@ -18,7 +18,7 @@ import axios from "axios";
 
 
 export default {
-    name: "UserDetailPage",
+    name: "DetailUserPage",
     components: {NavComp},
 
     data() {
@@ -27,8 +27,8 @@ export default {
         };
     },
     created() {
-        ;
-        axios.get(`/user/${userId}/detail`)
+
+        axios.get(`/user/`)
             .then(response => {
                 this.user = response.data.user;
             })

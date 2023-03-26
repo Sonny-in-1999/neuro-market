@@ -2,11 +2,12 @@
   <NavComp/>
     <div>
         <h1>커뮤니티</h1>
-        <div v-for="(board, index) in boards" :key="index">
-            <router-link :to="'/board/' + board._id"></router-link>
+        <div v-for="board in boards" :key="board._id">
+            <router-link :to="'/board/' + board._id">
             <p>제목: {{ board.boardTitle }}</p>
             <p>작성자: {{ board.userName }}</p>
             <p>작성일자: {{ board.boardCreatedAt }}</p>
+            </router-link>
         </div>
     </div>
   <a href="/board/post">글 작성하기</a>

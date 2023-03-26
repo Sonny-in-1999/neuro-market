@@ -1,8 +1,11 @@
 const express = require('express');
+const router = express.Router();
+////* JWT *////
 const {jwtVerify} = require("../token/jwtVerify");
 const jwt = require("jsonwebtoken");
-const router = express.Router();
-
+////* cookie *////
+const cookieParser = require('cookie-parser');
+router.use(cookieParser()); // 이 라우터의 모든 path 가 cookie 에 접근할 수 있도록 합니다.
 
 /* GET user listing. */
 
@@ -12,7 +15,7 @@ router.get('/post', (req, res) => {
 
 router.get('/user', jwtVerify, async (req, res, next) => {
 
-    const userId = req.user.userId; // userId 를 req.user: 즉, jwtVerify 를 통해 받아온 회원의 회원Id로 설정합니다.
+    const userId = await req.userId; // jwtVerify(로그인)을 통해 받은 userId 를 const userId 에 저장합니다.
 
     try {
         const user = await db.collection('user').findOne({ _id: userId });  // 재설정한 userId를 토대로 db 에서 데이터를 추출합니다.
@@ -32,12 +35,12 @@ router.post('/post/upload', (req, res, next) => {
         .then(async response => {
             const user = {  // user declare for using const user, in token declare
                 _id: response.totalUser + 1,
-                userLogin: req.body.login,
-                userPw: req.body.pw,
-                userName: req.body.name,
-                userPhone: req.body.phone,
-                userEmail: req.body.email,
-                userGrade: req.body.grade,
+                userLogin: req.body.uLogin,
+                userPw: req.body.uPw,
+                userName: req.body.uName,
+                userPhone: req.body.uPhone,
+                userEmail: req.body.uEmail,
+                userGrade: req.body.uGrade,
                 userReported: 0
             };
 
@@ -45,13 +48,13 @@ router.post('/post/upload', (req, res, next) => {
 
             await db.collection('user').insertOne({ // user collection 에| userId 에는 총 유저 수 +1만큼을 넣고, userDetail 을 넣습니다.
                 _id: response.totalUser + 1,
-                userLogin: req.body.login,
-                userPw: req.body.pw,
+                userLogin: req.body.uLogin,
+                userPw: req.body.uPw,
                 userToken: token,
-                userName: req.body.name,
-                userPhone: req.body.phone,
-                userEmail: req.body.email,
-                userGrade: req.body.grade,
+                userName: req.body.uName,
+                userPhone: req.body.uPhone,
+                userEmail: req.body.uEmail,
+                userGrade: req.body.uGrade,
                 userReported: 0
             }).then(() => {
                 console.log("User Post Success")

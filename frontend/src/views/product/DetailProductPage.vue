@@ -7,7 +7,7 @@
 import NavComp from "@/components/NavComp.vue";
 
 export default {
-    name: "ProductDetailPage",
+    name: "DetailProductPage",
     components: {NavComp}
 }
 </script>

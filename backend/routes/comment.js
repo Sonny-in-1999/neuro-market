@@ -7,24 +7,25 @@ router.get('/', (req, res, next) => {
     // CommentBoardPage
 })
 
-router.get('/comment/:board_id/post', (req, res, next) => {
+router.get('/:board_id/comment/post', (req, res, next) => {
     // 해당 board url 에 접속한 뒤, 댓글을 작성하는 페이지
 })
 
 /* POST comment. */
-router.post('/comment/:board_id/post/upload', jwtVerify, async (req, res, next) => {
 
-    const user = req.user;  // jwtVerify 를 통해 받은 user 를 const user 에 저장합니다.
+router.post('/:board_id/comment/post/upload', jwtVerify, async (req, res, next) => {
+
+    const boardId = parseInt(req.params.board_id);
+    const user = req.user; // Save the user received through jwtVerify to const user.
     let now = new Date();
 
-
-    db.collection('board').findOne({_id: '작성하려는 글의 고유 id 번호'})  // url 속 board_id를 가져오고 싶은데 방법을 모르겠음.
-        .then( async (response) =>{
+    db.collection('board').findOne({_id: boardId})
+        .then(async (response) => {
             const totalComment = response.totalComment;
 
-            await db.collection('comment').insertOne({  // comment collection 에| commentId 에는 총 comment 수 +1만큼을 넣고, commentDetail 을 넣습니다.
+            await db.collection('comment').insertOne({
                 _id: totalComment + 1,
-                boardId: "작성하려는 글의 고유 id 번호",
+                boardId: boardId,
                 userId: user.userId,
                 userName: user.userName,
                 commentDetail: req.body.cDetail,
@@ -33,7 +34,7 @@ router.post('/comment/:board_id/post/upload', jwtVerify, async (req, res, next) 
                 commentReported: 0
             }).then(() => {
                 console.log("Comment Post Success.");
-                db.collection('board').findOneAndUpdate({_id: '작성하려는 글의 고유 id 번호'}, {$inc: {totalComment: 1}});
+                db.collection('board').findOneAndUpdate({_id: boardId}, {$inc: {totalComment: 1}});
             }).catch((err) => console.log(err));
         });
 });
